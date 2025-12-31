@@ -21,7 +21,28 @@
     
     <!-- Canonical -->
     <link rel="canonical" href="https://holymartyrsorthodox.org" />
-    
+
+    <!-- GitHub Pages SPA redirect support -->
+    <script>
+      // If we were redirected from 404.html, restore the original path.
+      // Based on https://github.com/rafgraph/spa-github-pages
+      (function () {
+        var l = window.location;
+        if (l.search.startsWith("?/") ) {
+          var decoded = l.search
+            .slice(2)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+
+          // l.pathname ends with "/" on a project site, we remove that trailing slash.
+          window.history.replaceState(null, "", l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })();
+    </script>
+
     <!-- Fonts preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
