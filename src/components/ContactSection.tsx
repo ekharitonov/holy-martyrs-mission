@@ -93,12 +93,18 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="aspect-video rounded-lg bg-muted/50 flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <MapPin size={48} className="mx-auto mb-2 opacity-50" />
-                <p className="font-body">Map coming soon</p>
-              </div>
+            {/* Google Maps Embed */}
+            <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2954.8!2d-88.0456!3d42.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f9c4b5e5e5e5b%3A0x1234567890abcdef!2s227%20Barron%20Blvd%2C%20Grayslake%2C%20IL%2060030!5e0!3m2!1sen!2sus!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Holy Martyrs Orthodox Church Location"
+              />
             </div>
           </div>
 
