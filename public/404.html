@@ -4,13 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0;url=./" />
+    <meta name="robots" content="noindex" />
     <link rel="canonical" href="./" />
-  </head>
-  <body>
     <script>
-      // SPA fallback for GitHub Pages (handles deep links)
-      window.location.replace('./' + (window.location.search || '') + (window.location.hash || ''));
+      // SPA fallback for GitHub Pages.
+      // Based on https://github.com/rafgraph/spa-github-pages
+      (function () {
+        var l = window.location;
+        var segmentCount = 1; // /<repo>/...
+        var search = l.search ? l.search.slice(1).replace(/&/g, "~and~") : "";
+
+        var newUrl =
+          l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/") +
+          "/?" +
+          "/" +
+          l.pathname
+            .split("/")
+            .slice(1 + segmentCount)
+            .join("/") +
+          (search ? "&" + search : "") +
+          l.hash;
+
+        l.replace(newUrl);
+      })();
     </script>
-  </body>
+  </head>
+  <body></body>
 </html>
+
+
