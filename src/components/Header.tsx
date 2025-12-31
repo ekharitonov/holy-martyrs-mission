@@ -109,15 +109,14 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-xl shadow-elegant animate-fade-in border-t border-border/50">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-background backdrop-blur-xl shadow-elegant border-t border-border/50 z-50">
           <nav className="container-orthodox py-8 flex flex-col gap-2">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="font-body text-sm font-medium uppercase tracking-elegant text-foreground hover:text-primary transition-all duration-300 py-4 border-b border-border/30 flex items-center justify-between group"
-                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span>{link.label}</span>
                 <span className="w-4 h-px bg-primary/0 group-hover:bg-primary group-hover:w-8 transition-all duration-300" />
