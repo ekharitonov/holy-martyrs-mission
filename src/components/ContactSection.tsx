@@ -38,8 +38,8 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: t('contact.address'),
-      value: 'Northwest Chicago, IL',
-      href: null,
+      value: '227 Barron Blvd, Grayslake, IL 60030',
+      href: 'https://maps.google.com/?q=227+Barron+Blvd,+Grayslake,+IL+60030',
     },
   ];
 
