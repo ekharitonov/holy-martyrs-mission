@@ -2,40 +2,84 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Import gallery images
+import firstLiturgy from '@/assets/gallery/first-liturgy.jpg';
+import service1 from '@/assets/gallery/service-1.jpg';
+import service2 from '@/assets/gallery/service-2.jpg';
+import service3 from '@/assets/gallery/service-3.jpg';
+import sanctification1 from '@/assets/gallery/sanctification-1.jpg';
+import sanctification2 from '@/assets/gallery/sanctification-2.jpg';
+import community1 from '@/assets/gallery/community-1.jpg';
+import lunch from '@/assets/gallery/lunch.png';
+import recent1 from '@/assets/gallery/recent-1.jpg';
+import recent2 from '@/assets/gallery/recent-2.jpg';
+import throne from '@/assets/gallery/throne.jpg';
+import interior from '@/assets/gallery/interior.jpg';
+
 const GallerySection = () => {
   const { t, language } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images = [
     {
-      src: 'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=800&q=80',
-      captionEn: 'Divine Liturgy celebration',
+      src: firstLiturgy,
+      captionEn: 'First Divine Liturgy',
+      captionRu: 'Первая Божественная Литургия',
+    },
+    {
+      src: service1,
+      captionEn: 'Divine Liturgy',
       captionRu: 'Божественная Литургия',
     },
     {
-      src: 'https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&w=800&q=80',
-      captionEn: 'Community gathering',
-      captionRu: 'Собрание общины',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=800&q=80',
-      captionEn: 'Orthodox iconography',
-      captionRu: 'Православная иконография',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+      src: service2,
       captionEn: 'Prayer service',
-      captionRu: 'Молебен',
+      captionRu: 'Богослужение',
     },
     {
-      src: 'https://images.unsplash.com/photo-1515091943-a9df1f3bd3f4?auto=format&fit=crop&w=800&q=80',
+      src: sanctification1,
+      captionEn: 'Sanctification ceremony',
+      captionRu: 'Освящение',
+    },
+    {
+      src: sanctification2,
+      captionEn: 'Blessing of water',
+      captionRu: 'Водосвятие',
+    },
+    {
+      src: throne,
+      captionEn: 'Holy Throne',
+      captionRu: 'Святой Престол',
+    },
+    {
+      src: community1,
+      captionEn: 'Our community',
+      captionRu: 'Наша община',
+    },
+    {
+      src: lunch,
+      captionEn: 'Community meal',
+      captionRu: 'Трапеза общины',
+    },
+    {
+      src: service3,
+      captionEn: 'Feast day celebration',
+      captionRu: 'Праздничное богослужение',
+    },
+    {
+      src: interior,
       captionEn: 'Church interior',
       captionRu: 'Интерьер храма',
     },
     {
-      src: 'https://images.unsplash.com/photo-1518378188025-22bd89516ee2?auto=format&fit=crop&w=800&q=80',
-      captionEn: 'Feast day celebration',
-      captionRu: 'Празднование престольного праздника',
+      src: recent1,
+      captionEn: 'Recent service',
+      captionRu: 'Недавнее богослужение',
+    },
+    {
+      src: recent2,
+      captionEn: 'Parish life',
+      captionRu: 'Приходская жизнь',
     },
   ];
 
@@ -59,7 +103,7 @@ const GallerySection = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {images.map((image, index) => (
             <button
               key={index}
