@@ -9,79 +9,88 @@ const VisionSection = () => {
       icon: MapPin,
       title: t('vision.phase1.title'),
       description: t('vision.phase1.desc'),
-      accent: 'bg-primary/10 border-primary/30',
-      iconColor: 'text-primary',
+      number: '01',
     },
     {
       icon: Home,
       title: t('vision.phase2.title'),
       description: t('vision.phase2.desc'),
-      accent: 'bg-burgundy/10 border-burgundy/30',
-      iconColor: 'text-burgundy',
+      number: '02',
     },
     {
       icon: Church,
       title: t('vision.phase3.title'),
       description: t('vision.phase3.desc'),
-      accent: 'bg-deep-blue/10 border-deep-blue/30',
-      iconColor: 'text-deep-blue',
+      number: '03',
     },
   ];
 
   return (
-    <section id="vision" className="section-padding bg-cream-dark cross-pattern">
-      <div className="container-orthodox">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
+    <section id="vision" className="section-padding relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-cream-dark to-background" />
+      <div className="absolute inset-0 cross-pattern" />
+      
+      <div className="container-orthodox relative">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <p className="font-body text-xs uppercase tracking-elegant text-primary mb-4">
+            Our Path Forward
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-medium mb-6 tracking-subtle">
             {t('vision.title')}
           </h2>
-          <p className="font-body text-lg text-muted-foreground">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto mb-6">
             {t('vision.subtitle')}
           </p>
-          <div className="divider-orthodox max-w-xs mx-auto mt-4" />
+          <div className="divider-orthodox max-w-[200px] mx-auto" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        {/* Phases Grid */}
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-16">
           {phases.map((phase, index) => (
             <div
               key={index}
-              className={`card-orthodox p-8 text-center border-2 ${phase.accent} hover:border-primary/50 transition-all`}
+              className="group relative"
             >
-              {/* Phase number */}
-              <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-cream font-display font-bold text-sm mb-6">
-                {index + 1}
-              </div>
-
-              {/* Icon */}
-              <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-background flex items-center justify-center shadow-md ${phase.iconColor}`}>
-                <phase.icon size={36} />
-              </div>
-
-              {/* Content */}
-              <h3 className="font-display text-2xl font-bold text-foreground mb-4">
-                {phase.title}
-              </h3>
-              <p className="font-body text-muted-foreground">
-                {phase.description}
-              </p>
-
-              {/* Connector arrow (not on last) */}
+              {/* Connector line */}
               {index < phases.length - 1 && (
-                <div className="hidden md:block absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 text-primary/30">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+                <div className="hidden md:block absolute top-16 left-[calc(100%+1rem)] w-[calc(100%-2rem)] h-px">
+                  <div className="h-full bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30" />
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 border-t border-r border-primary/50" />
                 </div>
               )}
+              
+              <div className="card-orthodox p-10 text-center h-full">
+                {/* Phase number */}
+                <div className="inline-block mb-8">
+                  <span className="font-display text-6xl font-medium text-primary/20 group-hover:text-primary/40 transition-colors duration-500">
+                    {phase.number}
+                  </span>
+                </div>
+
+                {/* Icon */}
+                <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center border border-primary/20 group-hover:border-primary/40 transition-all duration-500 group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)]">
+                  <phase.icon size={32} className="text-primary" />
+                </div>
+
+                {/* Content */}
+                <h3 className="font-display text-xl font-medium text-foreground mb-4 tracking-subtle">
+                  {phase.title}
+                </h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  {phase.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Cemetery mention */}
-        <div className="text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-3 bg-burgundy/10 text-burgundy px-6 py-3 rounded-full">
-            <span className="text-2xl">✝</span>
-            <span className="font-body font-medium">
+        {/* Cemetery mention - refined */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-4 px-8 py-4 rounded-sm border border-burgundy/20 bg-burgundy/5">
+            <span className="text-burgundy text-2xl">✝</span>
+            <span className="font-body text-sm font-medium text-burgundy tracking-wide">
               {t('vision.cemetery')}
             </span>
           </div>
