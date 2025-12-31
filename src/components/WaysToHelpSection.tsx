@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Gift, Share2, Heart, FileHeart } from 'lucide-react';
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const WaysToHelpSection = () => {
   const { t } = useLanguage();
@@ -35,17 +36,18 @@ const WaysToHelpSection = () => {
   return (
     <section className="section-padding bg-cream-dark cross-pattern">
       <div className="container-orthodox">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
             {t('help.title')}
           </h2>
           <div className="divider-orthodox max-w-xs mx-auto" />
-        </div>
+        </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {ways.map((way, index) => (
-            <div
+            <ScrollReveal
               key={index}
+              delay={index * 100}
               className="card-orthodox p-6 text-center group hover:bg-primary/5"
             >
               <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-cream transition-all duration-300">
@@ -57,7 +59,7 @@ const WaysToHelpSection = () => {
               <p className="font-body text-sm text-muted-foreground">
                 {way.description}
               </p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 

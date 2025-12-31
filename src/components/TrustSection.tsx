@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Shield, Award, ExternalLink } from 'lucide-react';
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const TrustSection = () => {
   const { t } = useLanguage();
@@ -7,16 +8,16 @@ const TrustSection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container-orthodox">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
             {t('trust.title')}
           </h2>
           <div className="divider-orthodox max-w-xs mx-auto" />
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           {/* Archbishop's Blessing */}
-          <div className="card-orthodox p-8 bg-primary/5 border border-primary/20">
+          <ScrollReveal animation="slide-left" className="card-orthodox p-8 bg-primary/5 border border-primary/20">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                 <span className="text-cream text-2xl">☦</span>
@@ -33,10 +34,10 @@ const TrustSection = () => {
             <blockquote className="font-display text-lg italic text-foreground leading-relaxed border-l-4 border-primary pl-4">
               {t('trust.blessing.quote')}
             </blockquote>
-          </div>
+          </ScrollReveal>
 
           {/* Affiliations & Credentials */}
-          <div className="space-y-4">
+          <ScrollReveal animation="slide-right" delay={150} className="space-y-4">
             {/* ROCOR Affiliation */}
             <div className="card-orthodox p-6 flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-deep-blue/10 flex items-center justify-center flex-shrink-0">
@@ -72,7 +73,7 @@ const TrustSection = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Community Photos Placeholder */}

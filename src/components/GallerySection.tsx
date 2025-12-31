@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 // Import gallery images
 import firstLiturgy from '@/assets/gallery/first-liturgy.jpg';
 import service1 from '@/assets/gallery/service-1.jpg';
@@ -95,21 +95,25 @@ const GallerySection = () => {
   return (
     <section id="gallery" className="section-padding bg-cream-dark cross-pattern">
       <div className="container-orthodox">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
             {t('gallery.title')}
           </h2>
           <div className="divider-orthodox max-w-xs mx-auto" />
-        </div>
+        </ScrollReveal>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {images.map((image, index) => (
-            <button
+            <ScrollReveal
               key={index}
-              onClick={() => setSelectedImage(index)}
-              className="group relative aspect-square overflow-hidden rounded-lg shadow-lg"
+              delay={index * 50}
+              animation="scale-in"
             >
+              <button
+                onClick={() => setSelectedImage(index)}
+                className="group relative aspect-square overflow-hidden rounded-lg shadow-lg w-full"
+              >
               <img
                 src={image.src}
                 alt={language === 'en' ? image.captionEn : image.captionRu}
@@ -121,7 +125,8 @@ const GallerySection = () => {
                   {language === 'en' ? image.captionEn : image.captionRu}
                 </p>
               </div>
-            </button>
+              </button>
+            </ScrollReveal>
           ))}
         </div>
 

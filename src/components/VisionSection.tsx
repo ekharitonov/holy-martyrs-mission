@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Home, Church } from 'lucide-react';
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const VisionSection = () => {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ const VisionSection = () => {
       
       <div className="container-orthodox relative">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <ScrollReveal className="text-center mb-20">
           <p className="font-body text-xs uppercase tracking-elegant text-primary mb-4">
             Our Path Forward
           </p>
@@ -44,13 +45,14 @@ const VisionSection = () => {
             {t('vision.subtitle')}
           </p>
           <div className="divider-orthodox max-w-[200px] mx-auto" />
-        </div>
+        </ScrollReveal>
 
         {/* Phases Grid */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-16">
           {phases.map((phase, index) => (
-            <div
+            <ScrollReveal
               key={index}
+              delay={index * 150}
               className="group relative"
             >
               {/* Connector line */}
@@ -82,7 +84,7 @@ const VisionSection = () => {
                   {phase.description}
                 </p>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
