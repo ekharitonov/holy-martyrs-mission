@@ -37,30 +37,38 @@ const DonationSection = () => {
   };
 
   return (
-    <section id="donate" className="section-padding bg-background">
-      <div className="container-orthodox">
+    <section id="donate" className="section-padding relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream-dark via-background to-cream-dark" />
+      <div className="absolute inset-0 cross-pattern opacity-50" />
+      
+      <div className="container-orthodox relative">
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
+          <p className="font-body text-xs uppercase tracking-elegant text-primary mb-4">
+            Support Our Mission
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-medium mb-6 tracking-subtle">
             {t('donate.title')}
           </h2>
-          <p className="font-body text-lg text-muted-foreground">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto">
             {t('donate.subtitle')}
           </p>
-          <div className="divider-orthodox max-w-xs mx-auto mt-4" />
+          <div className="divider-orthodox max-w-[200px] mx-auto mt-6" />
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="card-orthodox p-8 md:p-12">
+          <div className="card-orthodox p-10 md:p-14 ornate-frame">
             <form onSubmit={handleSubmit}>
-              {/* One-time / Monthly Toggle */}
-              <div className="flex justify-center mb-10">
-                <div className="inline-flex bg-muted rounded-lg p-1">
+              {/* One-time / Monthly Toggle - refined */}
+              <div className="flex justify-center mb-12">
+                <div className="inline-flex bg-muted/50 rounded-sm p-1 border border-border/50">
                   <button
                     type="button"
                     onClick={() => setIsMonthly(false)}
-                    className={`px-6 py-3 rounded-md font-body font-semibold transition-all ${
+                    className={`px-8 py-3 rounded-sm font-body text-xs font-semibold uppercase tracking-elegant transition-all duration-500 ${
                       !isMonthly
-                        ? 'bg-primary text-primary-foreground shadow-md'
+                        ? 'bg-primary text-primary-foreground shadow-lg'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -69,9 +77,9 @@ const DonationSection = () => {
                   <button
                     type="button"
                     onClick={() => setIsMonthly(true)}
-                    className={`px-6 py-3 rounded-md font-body font-semibold transition-all ${
+                    className={`px-8 py-3 rounded-sm font-body text-xs font-semibold uppercase tracking-elegant transition-all duration-500 ${
                       isMonthly
-                        ? 'bg-primary text-primary-foreground shadow-md'
+                        ? 'bg-primary text-primary-foreground shadow-lg'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -80,8 +88,8 @@ const DonationSection = () => {
                 </div>
               </div>
 
-              {/* Amount Selection */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+              {/* Amount Selection - elegant cards */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
                 {(isMonthly ? monthlyTiers : oneTimeAmounts.map(a => ({ amount: a, tier: '' }))).map(
                   ({ amount, tier }) => (
                     <button
@@ -91,34 +99,34 @@ const DonationSection = () => {
                         setSelectedAmount(amount);
                         setCustomAmount('');
                       }}
-                      className={`relative p-4 rounded-lg border-2 transition-all ${
+                      className={`relative p-5 rounded-sm transition-all duration-500 group ${
                         selectedAmount === amount
-                          ? 'border-primary bg-primary/10 shadow-md'
-                          : 'border-border hover:border-primary/50'
+                          ? 'bg-primary/10 border-2 border-primary shadow-[0_0_20px_hsl(var(--primary)/0.2)]'
+                          : 'bg-background border border-border hover:border-primary/50'
                       }`}
                     >
                       {selectedAmount === amount && (
-                        <div className="absolute -top-2 -right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                          <Check size={12} className="text-cream" />
+                        <div className="absolute -top-2 -right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-lg">
+                          <Check size={12} className="text-primary-foreground" />
                         </div>
                       )}
-                      <p className="font-display text-2xl font-bold text-foreground">
+                      <p className="font-display text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
                         ${amount}
                       </p>
                       {tier && (
-                        <p className="font-body text-xs text-primary mt-1">
+                        <p className="font-body text-[10px] text-primary mt-1 uppercase tracking-wide">
                           {tier}
                         </p>
                       )}
-                      {isMonthly && <p className="font-body text-xs text-muted-foreground">/mo</p>}
+                      {isMonthly && <p className="font-body text-[10px] text-muted-foreground">/mo</p>}
                     </button>
                   )
                 )}
               </div>
 
-              {/* Custom Amount */}
-              <div className="mb-8">
-                <label className="font-body text-sm font-medium text-foreground block mb-2">
+              {/* Custom Amount - refined */}
+              <div className="mb-10">
+                <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                   {t('donate.custom')}
                 </label>
                 <div className="relative">
@@ -131,15 +139,15 @@ const DonationSection = () => {
                       setSelectedAmount(null);
                     }}
                     placeholder="Enter amount"
-                    className="w-full pl-8 pr-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body"
+                    className="w-full pl-8 pr-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body placeholder:text-muted-foreground/50"
                   />
                 </div>
               </div>
 
-              {/* Form Fields */}
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
+              {/* Form Fields - elegant styling */}
+              <div className="grid md:grid-cols-2 gap-6 mb-10">
                 <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-2">
+                  <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                     {t('donate.form.name')} *
                   </label>
                   <input
@@ -147,11 +155,11 @@ const DonationSection = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body"
+                    className="w-full px-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body"
                   />
                 </div>
                 <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-2">
+                  <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                     {t('donate.form.email')} *
                   </label>
                   <input
@@ -159,22 +167,22 @@ const DonationSection = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body"
+                    className="w-full px-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body"
                   />
                 </div>
                 <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-2">
+                  <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                     {t('donate.form.phone')}
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body"
+                    className="w-full px-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body"
                   />
                 </div>
                 <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-2">
+                  <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                     {t('donate.form.memory')}
                   </label>
                   <input
@@ -182,52 +190,57 @@ const DonationSection = () => {
                     value={formData.memory}
                     onChange={(e) => setFormData({ ...formData, memory: e.target.value })}
                     placeholder="In memory of... / In honor of..."
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body"
+                    className="w-full px-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body placeholder:text-muted-foreground/50"
                   />
                 </div>
               </div>
 
               {/* Message */}
-              <div className="mb-6">
-                <label className="font-body text-sm font-medium text-foreground block mb-2">
+              <div className="mb-8">
+                <label className="font-body text-xs font-medium text-foreground uppercase tracking-elegant block mb-3">
                   {t('donate.form.message')}
                 </label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body resize-none"
+                  className="w-full px-4 py-4 rounded-sm border border-border bg-background focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all font-body resize-none"
                 />
               </div>
 
-              {/* Anonymous checkbox */}
-              <label className="flex items-center gap-3 mb-8 cursor-pointer">
+              {/* Anonymous checkbox - refined */}
+              <label className="flex items-center gap-4 mb-10 cursor-pointer group">
+                <div className={`w-5 h-5 rounded-sm border-2 flex items-center justify-center transition-all ${
+                  isAnonymous ? 'bg-primary border-primary' : 'border-border group-hover:border-primary/50'
+                }`}>
+                  {isAnonymous && <Check size={14} className="text-primary-foreground" />}
+                </div>
                 <input
                   type="checkbox"
                   checked={isAnonymous}
                   onChange={(e) => setIsAnonymous(e.target.checked)}
-                  className="w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  className="sr-only"
                 />
-                <span className="font-body text-foreground">
+                <span className="font-body text-sm text-foreground">
                   {t('donate.form.anonymous')}
                 </span>
               </label>
 
               {/* Submit Button */}
-              <button type="submit" className="w-full btn-gold text-xl flex items-center justify-center gap-3">
-                <CreditCard size={24} />
-                {t('donate.submit')}
+              <button type="submit" className="w-full btn-gold flex items-center justify-center gap-3 py-5">
+                <CreditCard size={20} />
+                <span>{t('donate.submit')}</span>
               </button>
 
-              {/* Alternative payment */}
-              <div className="mt-8 p-4 bg-muted/50 rounded-lg text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Smartphone size={20} className="text-primary" />
-                  <span className="font-body font-medium text-foreground">
+              {/* Alternative payment - refined */}
+              <div className="mt-10 p-6 bg-muted/30 rounded-sm border border-border/50 text-center">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Smartphone size={18} className="text-primary" />
+                  <span className="font-body text-sm font-medium text-foreground">
                     {t('donate.alternative')}
                   </span>
                 </div>
-                <p className="font-body text-sm text-muted-foreground">
+                <p className="font-body text-xs text-muted-foreground">
                   {t('donate.tax')}
                 </p>
               </div>
