@@ -1,16 +1,15 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Church, Users, Star, Building, Home, Cross } from 'lucide-react';
 
 const StorySection = () => {
   const { t, language } = useLanguage();
 
   const timeline = [
-    { year: '2020', icon: Church, text: t('story.timeline.2020') },
-    { year: '2022', icon: Users, text: t('story.timeline.2022') },
-    { year: '2023', icon: Star, text: t('story.timeline.2023') },
-    { year: '2024', icon: Building, text: t('story.timeline.2024') },
-    { year: '2025', icon: Home, text: t('story.timeline.2025') },
-    { year: '∞', icon: Cross, text: t('story.timeline.future') },
+    { year: '2020', text: t('story.timeline.2020') },
+    { year: '2022', text: t('story.timeline.2022') },
+    { year: '2023', text: t('story.timeline.2023') },
+    { year: '2024', text: t('story.timeline.2024') },
+    { year: '2025–2026', text: t('story.timeline.2025') },
+    { year: '2027+', text: t('story.timeline.future') },
   ];
 
   return (
@@ -60,36 +59,39 @@ const StorySection = () => {
             </div>
           </div>
 
-          {/* Timeline - premium styling */}
-          <div className="card-orthodox p-10 md:p-12">
-            <h3 className="font-display text-xl font-medium text-foreground mb-10 tracking-subtle text-center">
+          {/* Timeline - Table format */}
+          <div className="card-orthodox p-8 md:p-10">
+            <h3 className="font-display text-xl font-medium text-foreground mb-8 tracking-subtle text-center">
               {t('story.timeline.title')}
             </h3>
             
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-primary via-primary/40 to-primary/10" />
+            {/* Table Header */}
+            <div className="grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] gap-4 mb-4 pb-3 border-b-2 border-primary/30">
+              <span className="font-body text-xs uppercase tracking-elegant text-primary font-semibold">
+                {language === 'en' ? 'Year' : 'Год'}
+              </span>
+              <span className="font-body text-xs uppercase tracking-elegant text-primary font-semibold">
+                {language === 'en' ? 'Stage' : 'Этап'}
+              </span>
+            </div>
 
-              <div className="space-y-8">
-                {timeline.map((item, index) => (
-                  <div key={index} className="relative flex gap-6 group">
-                    {/* Icon container */}
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-background border border-primary/40 flex items-center justify-center group-hover:border-primary group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all duration-500">
-                      <item.icon size={16} className="text-primary" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 pt-1">
-                      <span className="font-display text-lg font-medium text-primary tracking-subtle">
-                        {item.year}
-                      </span>
-                      <p className="font-body text-sm text-muted-foreground mt-1 leading-relaxed">
-                        {item.text}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            {/* Table Rows */}
+            <div className="space-y-0">
+              {timeline.map((item, index) => (
+                <div 
+                  key={index} 
+                  className={`grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] gap-4 py-4 group hover:bg-primary/5 transition-colors duration-300 ${
+                    index !== timeline.length - 1 ? 'border-b border-border/50' : ''
+                  }`}
+                >
+                  <span className="font-display text-base font-medium text-primary">
+                    {item.year}
+                  </span>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
