@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const StorySection = () => {
   const { t, language } = useLanguage();
@@ -19,7 +20,7 @@ const StorySection = () => {
       
       <div className="container-orthodox relative">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <ScrollReveal className="text-center mb-20">
           <p className="font-body text-xs uppercase tracking-elegant text-primary mb-4">
             {language === 'en' ? 'About Us' : 'О нас'}
           </p>
@@ -27,11 +28,11 @@ const StorySection = () => {
             {t('story.title')}
           </h2>
           <div className="divider-orthodox max-w-[200px] mx-auto" />
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           {/* Story Text */}
-          <div className="space-y-6">
+          <ScrollReveal animation="slide-left" className="space-y-6">
             <p className="font-body text-lg leading-relaxed text-foreground">
               {t('story.intro')}
             </p>
@@ -63,10 +64,10 @@ const StorySection = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Timeline - Table format */}
-          <div className="card-orthodox p-8 md:p-10">
+          <ScrollReveal animation="slide-right" delay={200} className="card-orthodox p-8 md:p-10">
             <h3 className="font-display text-xl font-medium text-foreground mb-8 tracking-subtle text-center">
               {t('story.timeline.title')}
             </h3>
@@ -99,7 +100,7 @@ const StorySection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

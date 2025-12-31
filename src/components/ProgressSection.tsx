@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Heart } from 'lucide-react';
+import { ScrollReveal } from '@/hooks/useScrollReveal';
 
 const ProgressSection = () => {
   const { t } = useLanguage();
@@ -53,7 +54,7 @@ const ProgressSection = () => {
       
       <div className="container-orthodox relative">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <p className="font-body text-xs uppercase tracking-elegant text-primary mb-4">
             Building Fund
           </p>
@@ -61,10 +62,10 @@ const ProgressSection = () => {
             {t('progress.title')}
           </h2>
           <div className="divider-orthodox max-w-[200px] mx-auto" />
-        </div>
+        </ScrollReveal>
 
         {/* Main Progress Card */}
-        <div className="card-orthodox max-w-4xl mx-auto p-10 md:p-14 ornate-frame">
+        <ScrollReveal delay={200} animation="scale-in" className="card-orthodox max-w-4xl mx-auto p-10 md:p-14 ornate-frame">
           {/* Stats - refined layout */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
             <div className="text-center">
@@ -166,7 +167,7 @@ const ProgressSection = () => {
               {t('hero.donate')}
             </a>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
