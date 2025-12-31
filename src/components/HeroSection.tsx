@@ -1,13 +1,33 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Parallax multipliers
+  const bgParallax = scrollY * 0.5;
+  const domeParallax = scrollY * 0.3;
+  const contentParallax = scrollY * 0.15;
+  const crossParallax = scrollY * 0.4;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with sophisticated layering */}
-      <div className="absolute inset-0 bg-gradient-to-b from-deep-blue via-deep-blue to-accent">
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-deep-blue via-deep-blue to-accent"
+        style={{ transform: `translateY(${bgParallax}px)` }}
+      >
         {/* Radial gradient overlay for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_hsl(220_40%_12%_/_0.4)_100%)]" />
         
@@ -20,7 +40,10 @@ const HeroSection = () => {
         />
         
         {/* Decorative cross pattern - more subtle */}
-        <div className="absolute inset-0 cross-pattern opacity-20" />
+        <div 
+          className="absolute inset-0 cross-pattern opacity-20"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        />
         
         {/* Gold accent lines - top */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
@@ -30,8 +53,11 @@ const HeroSection = () => {
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       </div>
 
-      {/* Elegant dome silhouette */}
-      <div className="absolute bottom-0 left-0 right-0 opacity-[0.12]">
+      {/* Elegant dome silhouette with parallax */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 opacity-[0.12]"
+        style={{ transform: `translateY(${domeParallax}px)` }}
+      >
         <svg viewBox="0 0 1440 500" className="w-full h-auto" preserveAspectRatio="xMidYMax slice">
           <defs>
             <linearGradient id="domeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -65,10 +91,16 @@ const HeroSection = () => {
         </svg>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        {/* Orthodox cross icon with glow */}
-        <div className="mb-10 opacity-0 animate-fade-up">
+      {/* Content with parallax */}
+      <div 
+        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        style={{ transform: `translateY(${contentParallax}px)`, opacity: Math.max(0, 1 - scrollY / 600) }}
+      >
+        {/* Orthodox cross icon with glow and parallax */}
+        <div 
+          className="mb-10 opacity-0 animate-fade-up"
+          style={{ transform: `translateY(${-crossParallax}px)` }}
+        >
           <div className="inline-flex items-center justify-center">
             <span 
               className="text-primary text-6xl md:text-7xl lg:text-8xl animate-pulse-glow"
@@ -113,7 +145,10 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator - refined */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in delay-700">
+      <div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in delay-700"
+        style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
+      >
         <a href="#progress" className="flex flex-col items-center gap-3 text-primary-foreground/50 hover:text-primary transition-colors duration-500 group">
           <span className="font-body text-xs tracking-elegant uppercase">Scroll</span>
           <div className="w-5 h-8 rounded-full border border-primary-foreground/30 flex items-start justify-center p-1 group-hover:border-primary/50 transition-colors">
