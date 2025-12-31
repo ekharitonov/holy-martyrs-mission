@@ -31,7 +31,7 @@ const StorySection = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           {/* Story Text */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <p className="font-body text-lg leading-relaxed text-foreground">
               {t('story.intro')}
             </p>
@@ -41,6 +41,12 @@ const StorySection = () => {
             <p className="font-body text-base leading-relaxed text-muted-foreground">
               {t('story.paragraph3')}
             </p>
+            <p className="font-body text-base leading-relaxed text-muted-foreground">
+              {t('story.paragraph4')}
+            </p>
+            <p className="font-body text-base leading-relaxed text-muted-foreground">
+              {t('story.paragraph5')}
+            </p>
 
             {/* Decorative quote - refined */}
             <div className="mt-10 relative">
@@ -48,12 +54,12 @@ const StorySection = () => {
               <div className="pl-8 py-6">
                 <p className="font-heading text-xl md:text-2xl italic text-foreground leading-relaxed">
                   {language === 'en' 
-                    ? '"Come, let us worship and fall down before Christ."'
-                    : '«Приидите, поклонимся и припадём ко Христу.»'
+                    ? '"...they were of one heart and one soul"'
+                    : '«...у них было одно сердце и одна душа»'
                   }
                 </p>
                 <p className="font-body text-xs text-primary mt-4 uppercase tracking-elegant">
-                  — {language === 'en' ? 'Divine Liturgy' : 'Божественная Литургия'}
+                  — {language === 'en' ? 'Acts 4:32' : 'Деяния 4:32'}
                 </p>
               </div>
             </div>
