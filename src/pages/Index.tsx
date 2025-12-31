@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import ProgressSection from '@/components/ProgressSection';
+import StorySection from '@/components/StorySection';
+import VisionSection from '@/components/VisionSection';
+import DonationSection from '@/components/DonationSection';
+import WaysToHelpSection from '@/components/WaysToHelpSection';
+import TrustSection from '@/components/TrustSection';
+import GallerySection from '@/components/GallerySection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <HeroSection />
+          <ProgressSection />
+          <StorySection />
+          <VisionSection />
+          <DonationSection />
+          <WaysToHelpSection />
+          <TrustSection />
+          <GallerySection />
+          <ContactSection />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </LanguageProvider>
   );
 };
 
