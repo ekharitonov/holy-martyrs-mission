@@ -1,6 +1,7 @@
+import { forwardRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   const { t, language, setLanguage } = useLanguage();
 
   const quickLinks = [
@@ -12,7 +13,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-deep-blue text-cream py-16">
+    <footer ref={ref} className="bg-deep-blue text-cream py-16">
       <div className="container-orthodox">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Logo & Mission */}
@@ -113,6 +114,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;

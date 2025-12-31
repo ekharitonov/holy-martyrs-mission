@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Clock, Send, User } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import priestPhoto from '@/assets/contact-priest.jpg';
 import churchwardenPhoto from '@/assets/contact-churchwarden.jpg';
 
-const ContactSection = () => {
+const ContactSection = forwardRef<HTMLElement>((_, ref) => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-background">
+    <section ref={ref} id="contact" className="section-padding bg-background">
       <div className="container-orthodox">
         <div className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-bold mb-4">
@@ -216,6 +216,8 @@ const ContactSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ContactSection.displayName = 'ContactSection';
 
 export default ContactSection;
