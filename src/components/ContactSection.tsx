@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, User } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import priestPhoto from '@/assets/contact-priest.jpg';
+import churchwardenPhoto from '@/assets/contact-churchwarden.jpg';
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -22,24 +24,18 @@ const ContactSection = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  const contactInfo = [
+  const clergy = [
     {
-      icon: Mail,
-      label: t('contact.email'),
-      value: 'info@holymartyrsorthodox.org',
-      href: 'mailto:info@holymartyrsorthodox.org',
+      name: 'Rev. Fr. Antony Alekseyenko',
+      role: t('contact.clergy'),
+      phone: '612-770-9212',
+      photo: priestPhoto,
     },
     {
-      icon: Phone,
-      label: t('contact.phone'),
-      value: '312-342-4845',
-      href: 'tel:312-342-4845',
-    },
-    {
-      icon: MapPin,
-      label: t('contact.address'),
-      value: '227 Barron Blvd, Grayslake, IL 60030',
-      href: 'https://maps.google.com/?q=227+Barron+Blvd,+Grayslake,+IL+60030',
+      name: 'Sergei Orzhynskyy',
+      role: t('contact.churchwarden'),
+      phone: '312-342-4845',
+      photo: churchwardenPhoto,
     },
   ];
 
@@ -56,34 +52,81 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            {contactInfo.map((item, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="text-primary" size={24} />
-                </div>
-                <div>
-                  <p className="font-body text-sm text-muted-foreground uppercase tracking-wider">
-                    {item.label}
+            {/* Clergy Cards */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              {clergy.map((person, index) => (
+                <div key={index} className="card-orthodox p-6 text-center group hover:shadow-xl transition-all duration-300">
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary/40 transition-colors">
+                    <img 
+                      src={person.photo} 
+                      alt={person.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
+                    {person.name}
+                  </h3>
+                  <p className="font-body text-sm text-primary uppercase tracking-wider mb-3">
+                    {person.role}
                   </p>
-                  {item.href ? (
+                  <a
+                    href={`tel:${person.phone.replace(/-/g, '')}`}
+                    className="inline-flex items-center gap-2 font-body text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone size={16} />
+                    {person.phone}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* Addresses */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="card-orthodox p-5">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="text-primary" size={20} />
+                  </div>
+                  <div>
+                    <p className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-1">
+                      {t('contact.address')}
+                    </p>
                     <a
-                      href={item.href}
-                      className="font-body text-lg text-foreground hover:text-primary transition-colors"
+                      href="https://maps.google.com/?q=227+Barron+Blvd,+Grayslake,+IL+60030"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-body text-sm text-foreground hover:text-primary transition-colors leading-relaxed"
                     >
-                      {item.value}
+                      227 Barron Blvd<br />
+                      Grayslake, IL 60030
                     </a>
-                  ) : (
-                    <p className="font-body text-lg text-foreground">{item.value}</p>
-                  )}
+                  </div>
                 </div>
               </div>
-            ))}
+
+              <div className="card-orthodox p-5">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="text-primary" size={20} />
+                  </div>
+                  <div>
+                    <p className="font-body text-xs text-muted-foreground uppercase tracking-wider mb-1">
+                      {t('contact.mailingAddress')}
+                    </p>
+                    <p className="font-body text-sm text-foreground leading-relaxed">
+                      333 Busse Hwy #171<br />
+                      Park Ridge, IL 60068-3285
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Service Schedule */}
             <div className="card-orthodox p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Clock className="text-primary" size={24} />
-                <h3 className="font-display text-xl font-bold text-foreground">
+                <h3 className="font-heading text-xl font-bold text-foreground">
                   {t('contact.services')}
                 </h3>
               </div>
